@@ -12,7 +12,7 @@
                         <img src="{% static 'img/Carro.png' %}" width="221" height="115">
                     </a>
 					<div class="container-fluid">
-						<a class="navbar-brand" href="#">Início</a>
+						<a class="navbar-brand" href="{% url 'index' %}">Início</a>
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 							data-bs-target="#navbarSupportedContent"
 							aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -38,7 +38,7 @@
 									</a>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Cadastrar Fornecedor</a></li>
-										<li><a class="dropdown-item" href="#">Listar Fornecedores</a></li>
+										<li><a class="dropdown-item" href="{% url 'fornecedores' %}">Listar Fornecedores</a></li>
 									</ul>
 								</li>
                                 <li class="nav-item dropdown">
