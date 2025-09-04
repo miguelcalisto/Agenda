@@ -3,7 +3,7 @@ from django.core.checks import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .forms import ClienteModelForm
 # Create your views here.
@@ -33,3 +33,17 @@ class ClienteAddView(SuccessMessageMixin, CreateView):
     template_name = 'cliente_form.html'
     success_url = reverse_lazy('clientes')
     success_message = 'Cliente cadastrado com sucesso!'
+
+class ClienteUpdateView(SuccessMessageMixin, UpdateView):
+    model = Cliente
+    form_class = ClienteModelForm
+    template_name = 'cliente_form.html'
+    success_url = reverse_lazy('clientes')
+    success_message = 'Cliente alterado com sucesso!'
+
+
+class ClienteDeleteView(SuccessMessageMixin, DeleteView):
+    model = Cliente
+    template_name = 'cliente_apagar.html'
+    success_url = reverse_lazy('clientes')
+    success_message = 'Cliente excluido com sucesso!'

@@ -42,12 +42,12 @@
                         <td> {{ cliente.fone }}</td>
                         <td> {{ cliente.email }}</td>
                         <td style="text-align: center">
-                            <a href="#">
+                            <a href="{%  url 'cliente_editar' cliente.pk %}">
                                                 <span class="icon">
                                                     <i class="fas fa-edit"></i>
                                                 </span>
                             </a>
-                            <a href="#">
+                            <a href="{%  url 'cliente_apagar' cliente.pk %}">
                                                 <span class="icon">
                                                     <i class="far fa-trash-alt"></i>
                                                 </span>
