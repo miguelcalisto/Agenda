@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load django_bootstrap5 %}
 
 <html lang="pt-br" data-bs-theme="light">
 	{% block head %}
@@ -89,6 +90,13 @@
             </div>
         </section>
     </body>
+
+	{% if messages %}
+    <div class="container-fluid p-3">
+        {% bootstrap_messages %}
+    </div>
+{% endif %}
+
 	{% block content %} {% endblock %}
 
 	{% block footer %}
