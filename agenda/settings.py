@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import MEDIA_URL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,9 +44,11 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'home',
     'fornecedores',
+    'clientes',
 ]
 INSTALLED_APPS += [
-  'django_bootstrap5'
+  'django_bootstrap5',
+  'stdimage',
 ]
 
 
@@ -125,6 +129,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
+
+MEDIA_URL='/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type

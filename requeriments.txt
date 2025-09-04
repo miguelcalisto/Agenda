@@ -2,5 +2,7 @@ asgiref==3.9.1
 dj-static==0.0.6
 Django==5.2.5
 django-bootstrap5==25.2
+django-stdimage==6.0.2
+pillow==11.3.0
 sqlparse==0.5.3
 static3==0.7.0
