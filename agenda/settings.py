@@ -45,6 +45,7 @@ INSTALLED_APPS += [
     'home',
     'fornecedores',
     'clientes',
+    'produtos',
 ]
 INSTALLED_APPS += [
   'django_bootstrap5',

@@ -47,22 +47,24 @@ class FornecedorDeleteView(DeleteView):
     template_name = 'fornecedor_apagar.html'
     success_url = reverse_lazy('fornecedores')
 
-    class FornecedorAddView(SuccessMessageMixin, CreateView):
-        model = Fornecedor
-        form_class = FornecedorModelForm
-        template_name = 'fornecedor_form.html'
-        success_url = reverse_lazy('fornecedores')
-        success_message = 'Fornecedor cadastrado com sucesso!'
+# PROBLEMA NA IDENTACAO abaixo
 
-    class FornecedorUpdateView(SuccessMessageMixin, UpdateView):
-        model = Fornecedor
-        form_class = FornecedorModelForm
-        template_name = 'fornecedor_form.html'
-        success_url = reverse_lazy('fornecedores')
-        success_message = 'Fornecedor alterado com sucesso!'
+class FornecedorAddView(SuccessMessageMixin, CreateView):
+    model = Fornecedor
+    form_class = FornecedorModelForm
+    template_name = 'fornecedor_form.html'
+    success_url = reverse_lazy('fornecedores')
+    success_message = 'Fornecedor cadastrado com sucesso!'
 
-    class FornecedorDeleteView(SuccessMessageMixin, DeleteView):
-        model = Fornecedor
-        template_name = 'fornecedor_apagar.html'
-        success_url = reverse_lazy('fornecedores')
-        success_message = 'Fornecedor apagado com sucesso!'
+class FornecedorUpdateView(SuccessMessageMixin, UpdateView):
+    model = Fornecedor
+    form_class = FornecedorModelForm
+    template_name = 'fornecedor_form.html'
+    success_url = reverse_lazy('fornecedores')
+    success_message = 'Fornecedor alterado com sucesso!'
+
+class FornecedorDeleteView(SuccessMessageMixin, DeleteView):
+    model = Fornecedor
+    template_name = 'fornecedor_apagar.html'
+    success_url = reverse_lazy('fornecedores')
+    success_message = 'Fornecedor apagado com sucesso!'
