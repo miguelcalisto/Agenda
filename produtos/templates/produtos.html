@@ -36,12 +36,12 @@
                                         <td> {{  produto.preco }}   </td>
                                         <td>  {{  produto.quantidade }} </td>
                                         <td style="text-align: center">
-                                            <a href="#">
+                                            <a href="{% url 'produto_editar' produto.pk %}">
                                                 <span class="icon">
                                                     <i class="fas fa-edit"></i>
                                                 </span>
                                             </a>
-                                            <a href="#">
+                                            <a href="{% url 'produto_apagar' produto.pk  %}">
                                                 <span class="icon">
                                                     <i class="far fa-trash-alt"></i>
                                                 </span>

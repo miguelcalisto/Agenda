@@ -3,7 +3,7 @@ from django.core.checks import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from produtos.forms import ProdutoModelForm
 from produtos.models import Produto
@@ -34,3 +34,18 @@ class ProdutoAddView(SuccessMessageMixin, CreateView):
     template_name = 'produto_form.html'
     success_url = reverse_lazy('produtos')
     success_message = 'Produto cadastrado com sucesso!'
+
+
+class ProdutoUpdateView(SuccessMessageMixin, UpdateView):
+    model = Produto
+    form_class = ProdutoModelForm
+    template_name = 'produto_form.html'
+    success_url = reverse_lazy('produtos')
+    success_message = 'Produto alterado com sucesso!'
+
+
+class ProdutoDeleteView(SuccessMessageMixin, DeleteView):
+    model = Produto
+    template_name = 'produto_apagar.html'
+    success_url = reverse_lazy('produtos')
+    success_message = 'Produto apagado com sucesso!'
