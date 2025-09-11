@@ -49,8 +49,8 @@
 										Funcionários
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Funcionário</a></li>
-										<li><a class="dropdown-item" href="#">Listar Funcionários</a></li>
+										<li><a class="dropdown-item" href="{% url 'funcionario_adicionar' %}">Cadastrar Funcionário</a></li>
+										<li><a class="dropdown-item" href="{% url 'funcionarios' %}">Listar Funcionários</a></li>
 									</ul>
 								</li>
                                 <li class="nav-item dropdown">
@@ -59,8 +59,8 @@
 										Serviços
 									</a>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Cadastrar Serviço</a></li>
-										<li><a class="dropdown-item" href="#">Listar Serviços</a></li>
+										<li><a class="dropdown-item" href="{% url 'servico_adicionar' %}">Cadastrar Serviço</a></li>
+										<li><a class="dropdown-item" href="{% url 'servicos' %}">Listar Serviços</a></li>
 									</ul>
 								</li>
                                 <li class="nav-item dropdown">
