@@ -28,6 +28,8 @@
                                 <th>Descrição</th>
                                 <th>Preço</th>
                                 <th>Produtos</th>
+
+
                                 <th style="width: 100px; text-align: center">Ações</th>
                             </thead>
                             <tbody>
@@ -36,9 +38,26 @@
                                         <td> {{ servico.nome }}  </td>
                                         <td>    {{ servico.descricao }}  </td>
                                         <td>   {{ servico.preco }}   </td>
-                                        
+                                        <td>
+                                            {% for produto in servico.produtos %}
+                                                {% if forloop.last %}
+                                                    {{ produto }}
+                                                {% else %}
+                                                    {{ produto }},
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+
+
                                         <td style="text-align: center">
-                                             
+
+
+                                             <a href="{% url 'servico_inline' servico.pk %}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-flask"></i>
+                                                    </span>
+                                                </a>
+
                                             <a href="{% url 'servico_editar' servico.pk %}">
                                                 <span class="icon">
                                                     <i class="fas fa-edit"></i>
@@ -58,7 +77,7 @@
                                 {% bootstrap_pagination object_list url="/servicos?page=1" size="sm" %}
                         </div>
                     </div>
-                    
+
                 </div>
             {% endif %}
         </div>
