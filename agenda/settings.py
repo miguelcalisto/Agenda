@@ -48,6 +48,7 @@ INSTALLED_APPS += [
     'produtos',
     'funcionarios',
     'servicos',
+    'agendamentos',
 ]
 INSTALLED_APPS += [
   'django_bootstrap5',
