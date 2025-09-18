@@ -1,10 +1,10 @@
 ## Agenda
 
-Trabalho de desenvolvimento web com Django 
+Trabalho de desenvolvimento web com [Django](https://www.djangoproject.com/) 
 
 ## Como Usar
 
-1. **Crie e ative o ambiente virtual**
+1. **Crie e ative o [ambiente virtual](https://docs.python.org/pt-br/3/library/venv.html)**
 
 ```bash
 python3 -m venv .venv
