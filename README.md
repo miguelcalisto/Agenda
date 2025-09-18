@@ -1,3 +1,5 @@
 ## Agenda
 
-Trabalho de desenvolvimento web 
+Trabalho de desenvolvimento web com Django 
+
+![print](assets/print.png)
