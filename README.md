@@ -12,7 +12,7 @@ source .venv/bin/activate
 ````
 ```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\Activate
 
 ```
 
