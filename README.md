@@ -1,4 +1,4 @@
-## Agenda
+# Trabalho de desenvolvimento web 
 
 Trabalho de desenvolvimento web com [Django](https://www.djangoproject.com/) 
 
@@ -6,14 +6,15 @@ Trabalho de desenvolvimento web com [Django](https://www.djangoproject.com/)
 
 1. **Crie e ative o [ambiente virtual](https://docs.python.org/pt-br/3/library/venv.html)**
 
+Linux/Wsl
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ````
+Windows
 ```bash
 python -m venv .venv
 .\.venv\Scripts\Activate
-
 ```
 
 2. **Instale as dependências**
