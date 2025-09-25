@@ -4,93 +4,81 @@
 {% load static %}
 
 {% block content %}
-
-
-    <section class="section">
-        <div class="container">
-            <form action="" method="GET">
-                <div class="form-group row p-3">
-                   <div class="col-sm-5">
-                        {% bootstrap_field form.cliente layout='horizontal' %}
-                    </div>
-
-                    <div class="col-sm-5">
-                        {% bootstrap_field form.funcionario layout='horizontal' %}
-                    </div>
-
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary">
-                            Buscar
-                        </button>
-                    </div>
+<section class="section">
+    <div class="container">
+        <form action="" method="GET">
+            <div class="form-group row p-3">
+                <div class="col-sm-5">
+                    {% bootstrap_field form.cliente layout='horizontal' %}
                 </div>
-            </form>
-            {%  if object_list %}
-                <div class="card-body">
-                    <h3 class="text-center">Agendamentos Cadastrados</h3>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="table-success">
+
+                <div class="col-sm-5">
+                    {% bootstrap_field form.funcionario layout='horizontal' %}
+                </div>
+
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        {% if object_list %}
+            <div class="card-body">
+                <h3 class="text-center">Agendamentos Cadastrados</h3>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-success">
+                            <tr>
                                 <th>Horário</th>
                                 <th>Cliente</th>
                                 <th>Funcionário</th>
                                 <th>Serviços</th>
-
                                 <th style="width: 100px; text-align: center">Ações</th>
-                            </thead>
-                            <tbody>
-                                {% for agendamento in object_list %}
-                                    <tr>
-                                        <td>  {{ agendamento.horario }} </td>
-                                        <td> {{ agendamento.cliente }} </td>
-                                        <td> {{ agendamento.funcionario }} </td>
-                                        <td>
-                                          {% for servico in agendamento.servicos %}
-                                            {% if forloop.last %}
-                                              {{ servico }} ({{ servico.get_situacao_display }})
-                                            {% else %}
-                                              {{ servico }} ({{ servico.get_situacao_display }}),
-                                            {% endif %}
-                                          {% endfor %}
-                                        </td>
-
-                                        
-                                        <td style="text-align: center">
-                                            <a href="{% url 'agendamento_inline' agendamento.pk %}">
-                                                  <span class="icon">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                  </span>
-                                                </a>
-
-                                                <a href="{% url 'agendamento_editar' agendamento.pk %}">
-                                                    <span class="icon">
-                                                        <i class="fas fa-edit"></i>
-                                                    </span>
-                                                </a>
-                                                <a href="{% url 'agendamento_apagar' agendamento.pk %}">
-                                                    <span class="icon">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </span>
-                                                </a>
-
-
-
-
-
-
-
-                                        </td>
-                                    </tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for agendamento in object_list %}
+                                <tr>
+                                    <td>{{ agendamento.horario }}</td>
+                                    <td>{{ agendamento.cliente }}</td>
+                                    <td>{{ agendamento.funcionario }}</td>
+                                    <td>
+                                        {% for servico in agendamento.servicos %}
+                                            {{ servico }} - R$ {{ servico.preco }} ({{ servico.get_situacao_display }})<br>
+                                        {% endfor %}
+                                        <strong>Valor total: {{ agendamento.valor }}</strong>
+                                    </td>
+                                    <td style="text-align: center">
+                                        {% if agendamento.status == 'A' %}
+                                            <a href="{% url 'agendamento_inline' agendamento.pk %}" class="me-1" title="Inline">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                            <a href="{% url 'agendamento_editar' agendamento.pk %}" class="me-1" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'agendamento_apagar' agendamento.pk %}" class="me-1" title="Apagar">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+                                        {% else %}
+                                            <i class="fas fa-pencil-alt text-muted me-1" title="Não editável"></i>
+                                            <i class="fas fa-edit text-muted me-1" title="Não editável"></i>
+                                            <i class="far fa-trash-alt text-muted me-1" title="Não apagável"></i>
+                                        {% endif %}
+                                        <a href="{% url 'agendamento_exibir' agendamento.pk %}" title="Exibir">
+                                            <i class="fas fa-check-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        {% bootstrap_pagination object_list url="/agendamentos?page=1" size="sm" %}
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
-            {% endif %}
-        </div>
-    </section>
+
+                <div class="d-flex justify-content-center">
+                    {% bootstrap_pagination object_list url="/agendamentos?page=1" size="sm" %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

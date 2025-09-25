@@ -23,6 +23,15 @@ class Agendamento(models.Model):
         through='agendamentos.OrdemServicos'
     )
 
+    valor = models.DecimalField(verbose_name='Valor total', max_digits=6, decimal_places=2, default=0.00)
+
+    status = models.CharField(
+        'Status',
+        max_length=1,
+        help_text='Status do agendamento',
+        default='A'
+    )
+
     @property
     def servicos(self):
         return OrdemServicos.objects.filter(agendamento=self)
@@ -30,6 +39,7 @@ class Agendamento(models.Model):
     class Meta:
         verbose_name = 'Agendamento'
         verbose_name_plural = 'Agendamentos'
+        ordering = ['-horario']
 
     def __str__(self):
         return f'Cliente: {self.cliente}'
@@ -48,7 +58,7 @@ class OrdemServicos(models.Model):
     agendamento = models.ForeignKey(
         to='agendamentos.Agendamento',
         verbose_name='Agendamento',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='ordens_servico'
     )
     servico = models.ForeignKey(
@@ -82,6 +92,24 @@ class OrdemServicos(models.Model):
         help_text='Preço do serviço',
         default=0.00
     )
+
+    def calcular_valor_ordem(self):
+        valor_total = 0
+        qs = OrdemServicos.objects.filter(agendamento=self.agendamento)
+        for item in qs:
+            if item.situacao != 'C':
+                valor_total += item.preco
+        self.agendamento.valor = valor_total
+        self.agendamento.save()
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.preco = self.servico.preco
+        super().save(force_insert=force_insert, force_update=force_update, using=using, update_fields=update_fields)
+        self.calcular_valor_ordem()
+
+    def delete(self, using=None, keep_parents=False):
+        super().delete(using=using, keep_parents=keep_parents)
+        self.calcular_valor_ordem()
 
     class Meta:
         verbose_name = 'Serviço realizado'

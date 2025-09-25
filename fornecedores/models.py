@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.functions import Upper
+
 
 class Fornecedor(models.Model):
     nome = models.CharField('Nome', max_length=70, help_text='Nome do fornecedor')
@@ -8,6 +10,7 @@ class Fornecedor(models.Model):
     class Meta:
         verbose_name = 'Fornecedor'
         verbose_name_plural = 'Fornecedores'
+        ordering = [Upper('nome')]
 
     def __str__(self):
         return self.nome

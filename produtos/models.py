@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+from django.db.models.functions import Upper
+
 import fornecedores.models
 
 
@@ -34,6 +36,7 @@ class Produto(models.Model):
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
+        ordering = [Upper('nome')]
 
     def __str__(self):
         return self.nome

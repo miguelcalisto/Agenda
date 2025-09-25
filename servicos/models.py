@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.db.models.functions import Upper
 
 
 class Servico(models.Model):
@@ -15,6 +16,7 @@ class Servico(models.Model):
     class Meta:
         verbose_name = 'Serviço'
         verbose_name_plural = 'Serviços'
+        ordering = [Upper('nome')]
 
     def __str__(self):
         return self.nome
@@ -25,7 +27,7 @@ class ProdutosServico(models.Model):
         'servicos.Servico',
         verbose_name='Serviço',
         help_text='Nome do serviço realizado',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='servico'
     )
     produto = models.ForeignKey(
