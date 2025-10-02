@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.db.models import Q, ProtectedError
@@ -12,7 +13,10 @@ from servicos.forms import ServicoModelForm, ProdutosServicoInLine
 from servicos.models import Servico
 
 
-class ServicosView(ListView):
+class ServicosView(PermissionRequiredMixin,ListView):
+    permission_required = 'servicos.delete_servicos'
+    permission_denied_message = 'ver servicos'
+
     model = Servico
     template_name = 'servicos.html'
 
@@ -32,7 +36,10 @@ class ServicosView(ListView):
             return qs.none()  # Retorna queryset vazio para evitar erros
 
 
-class ServicoAddView(SuccessMessageMixin, CreateView):
+class ServicoAddView(PermissionRequiredMixin,SuccessMessageMixin, CreateView):
+    permission_required = 'servicos.add_servicos'
+    permission_denied_message = 'add servicos'
+
     model = Servico
     form_class = ServicoModelForm
     template_name = 'servico_form.html'
@@ -40,7 +47,10 @@ class ServicoAddView(SuccessMessageMixin, CreateView):
     success_message = 'Serviço cadastrado com sucesso!'
 
 
-class ServicoUpdateView(SuccessMessageMixin, UpdateView):
+class ServicoUpdateView(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    permission_required = 'servicos.update_servicos'
+    permission_denied_message = 'att servicos'
+
     model = Servico
     form_class = ServicoModelForm
     template_name = 'servico_form.html'
@@ -48,7 +58,10 @@ class ServicoUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'Serviço alterado com sucesso!'
 
 
-class ServicoDeleteView(SuccessMessageMixin, DeleteView):
+class ServicoDeleteView(PermissionRequiredMixin,SuccessMessageMixin, DeleteView):
+    permission_required = 'servicos.delete_servicos'
+    permission_denied_message = 'del servicos'
+
     model = Servico
     template_name = 'servico_apagar.html'
     success_url = reverse_lazy('servicos')

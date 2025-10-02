@@ -151,3 +151,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '<email>@gmail.com'  # Substitua pelo seu e-mail
 EMAIL_HOST_PASSWORD = '<app-password>'     # app password
 DEFAULT_FROM_EMAIL = 'Lavacar'
+
+# login auth
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login'

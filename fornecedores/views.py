@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator
 from django.db.models import ProtectedError
@@ -11,7 +12,10 @@ from django.contrib import messages
 from .forms import FornecedorModelForm
 from .models import Fornecedor
 
-class FornecedoresView(ListView):
+class FornecedoresView(PermissionRequiredMixin,ListView):
+    permission_required = 'fornecedores.delete_fornecedores'
+    permission_denied_message = 'ver fornecedor'
+
     model = Fornecedor
     template_name = 'fornecedores.html'
 
@@ -53,21 +57,30 @@ class FornecedoresView(ListView):
 
 # PROBLEMA NA IDENTACAO abaixo
 
-class FornecedorAddView(SuccessMessageMixin, CreateView):
+class FornecedorAddView(PermissionRequiredMixin,SuccessMessageMixin, CreateView):
+    permission_required = 'fornecedores.add_fornecedores'
+    permission_denied_message = 'add fornecedor'
+
     model = Fornecedor
     form_class = FornecedorModelForm
     template_name = 'fornecedor_form.html'
     success_url = reverse_lazy('fornecedores')
     success_message = 'Fornecedor cadastrado com sucesso!'
 
-class FornecedorUpdateView(SuccessMessageMixin, UpdateView):
+class FornecedorUpdateView(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    permission_required = 'fornecedores.update_fornecedores'
+    permission_denied_message = 'att fornecedor'
+
     model = Fornecedor
     form_class = FornecedorModelForm
     template_name = 'fornecedor_form.html'
     success_url = reverse_lazy('fornecedores')
     success_message = 'Fornecedor alterado com sucesso!'
 
-class FornecedorDeleteView(SuccessMessageMixin, DeleteView):
+class FornecedorDeleteView(PermissionRequiredMixin  ,SuccessMessageMixin, DeleteView):
+    permission_required = 'fornecedores.delete_fornecedores'
+    permission_denied_message = 'del fornecedor'
+
     model = Fornecedor
     template_name = 'fornecedor_apagar.html'
     success_url = reverse_lazy('fornecedores')

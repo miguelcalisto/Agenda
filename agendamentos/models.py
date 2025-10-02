@@ -38,6 +38,7 @@ class Agendamento(models.Model):
 
     class Meta:
         verbose_name = 'Agendamento'
+        permissions= (('fechar_agendamento', 'Permite fazer o fechar  de um agendamento'),)
         verbose_name_plural = 'Agendamentos'
         ordering = ['-horario']
 

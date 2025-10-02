@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.checks import messages
 from django.core.paginator import Paginator
@@ -11,7 +12,10 @@ from produtos.models import Produto
 
 
 # Create your views here.
-class ProdutosView(ListView):
+class ProdutosView(PermissionRequiredMixin,ListView):
+    permission_required = 'produtos.view_produtos'
+    permission_denied_message = 'ver produto'
+
     model = Produto
     template_name = 'produtos.html'
 
@@ -29,7 +33,10 @@ class ProdutosView(ListView):
         else:
             return messages.info(self.request, message='Não existem produtos cadastrados!')
 
-class ProdutoAddView(SuccessMessageMixin, CreateView):
+class ProdutoAddView(PermissionRequiredMixin,SuccessMessageMixin, CreateView):
+    permission_required = 'produtos.add_produtos'
+    permission_denied_message = 'add produto'
+
     model = Produto
     form_class = ProdutoModelForm
     template_name = 'produto_form.html'
@@ -37,7 +44,10 @@ class ProdutoAddView(SuccessMessageMixin, CreateView):
     success_message = 'Produto cadastrado com sucesso!'
 
 
-class ProdutoUpdateView(SuccessMessageMixin, UpdateView):
+class ProdutoUpdateView(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    permission_required = 'produtos.update_produtos'
+    permission_denied_message = 'att produto'
+
     model = Produto
     form_class = ProdutoModelForm
     template_name = 'produto_form.html'
@@ -45,7 +55,10 @@ class ProdutoUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'Produto alterado com sucesso!'
 
 
-class ProdutoDeleteView(SuccessMessageMixin, DeleteView):
+class ProdutoDeleteView(PermissionRequiredMixin,SuccessMessageMixin, DeleteView):
+    permission_required = 'produtos.delete_produtos'
+    permission_denied_message = 'del produto'
+
     model = Produto
     template_name = 'produto_apagar.html'
     success_url = reverse_lazy('produtos')

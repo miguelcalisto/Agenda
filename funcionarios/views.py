@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
@@ -9,7 +10,10 @@ from django.contrib import messages
 from .forms import FuncionarioModelForm
 from .models import Funcionario
 
-class FuncionariosView(ListView):
+class FuncionariosView(PermissionRequiredMixin,ListView):
+    permission_required = 'funcionarios.view_funcionario'
+    permission_denied_message = 'ver funcionario'
+
     model = Funcionario
     template_name = 'funcionarios.html'
 
@@ -29,7 +33,10 @@ class FuncionariosView(ListView):
             return qs.none()
 
 
-class FuncionarioAddView(SuccessMessageMixin, CreateView):
+class FuncionarioAddView(PermissionRequiredMixin,SuccessMessageMixin, CreateView):
+    permission_required = 'funcionarios.add_funcionario'
+    permission_denied_message = 'add funcionario'
+
     model = Funcionario
     form_class = FuncionarioModelForm
     template_name = 'funcionario_form.html'
@@ -38,7 +45,10 @@ class FuncionarioAddView(SuccessMessageMixin, CreateView):
 
 
 
-class FuncionarioUpdateView(SuccessMessageMixin, UpdateView):
+class FuncionarioUpdateView(PermissionRequiredMixin,SuccessMessageMixin, UpdateView):
+    permission_required = 'funcionarios.update_funcionario'
+    permission_denied_message = 'att funcionario'
+
     model = Funcionario
     form_class = FuncionarioModelForm
     template_name = 'funcionario_form.html'
@@ -46,7 +56,10 @@ class FuncionarioUpdateView(SuccessMessageMixin, UpdateView):
     success_message = 'Funcionário alterado com sucesso!'
 
 
-class FuncionarioDeleteView(SuccessMessageMixin, DeleteView):
+class FuncionarioDeleteView(PermissionRequiredMixin,SuccessMessageMixin, DeleteView):
+    permission_required = 'funcionarios.delete_funcionario'
+    permission_denied_message = 'del funcionario'
+
     model = Funcionario
     template_name = 'funcionario_apagar.html'
     success_url = reverse_lazy('funcionarios')

@@ -64,9 +64,15 @@
                                             <i class="fas fa-edit text-muted me-1" title="Não editável"></i>
                                             <i class="far fa-trash-alt text-muted me-1" title="Não apagável"></i>
                                         {% endif %}
+
+                                        {% if perms.agendamentos.fechar_agendamento %}
+
                                         <a href="{% url 'agendamento_exibir' agendamento.pk %}" title="Exibir">
                                             <i class="fas fa-check-circle"></i>
                                         </a>
+
+                                        {% endif %}
+
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -79,6 +85,8 @@
                 </div>
             </div>
         {% endif %}
+
+
     </div>
 </section>
 {% endblock %}
