@@ -197,5 +197,8 @@ class AgendamentoExibir(DetailView):
         return redirect('agendamentos')
 
 
+class AgendamentosGraficoView(ListView):
+    model = Agendamento
+    template_name = 'grafico.html'
 
 

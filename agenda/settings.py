@@ -14,7 +14,7 @@ from pathlib import Path
 
 import cloudinary
 import dj_database_url
-from decouple import  config
+from decouple import config
 from django.conf.global_settings import MEDIA_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,9 +54,9 @@ INSTALLED_APPS += [
     'agendamentos',
 ]
 INSTALLED_APPS += [
-  'django_bootstrap5',
-  'stdimage',
-   'cloudinary',
+    'django_bootstrap5',
+    'stdimage',
+    'cloudinary',
 ]
 
 
@@ -116,8 +116,8 @@ WSGI_APPLICATION = 'agenda.wsgi.application'
 # }
 DATABASES = {
     'default': dj_database_url.parse(config('DATABASE_URL')),
-
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -152,17 +152,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 if not DEBUG:
-    STATIC_URL = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL='/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
