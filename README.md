@@ -28,6 +28,6 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
-
+comentario
 ___
 ![print](assets/print.png)
