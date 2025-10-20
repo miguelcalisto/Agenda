@@ -1,6 +1,6 @@
 # Trabalho de desenvolvimento web 
 
-Trabalho de desenvolvimento web com [Django](https://www.djangoproject.com/) 
+OLA MUNDO
 
 ## Como Usar
 
