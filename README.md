@@ -4,6 +4,7 @@
 
 1. **Crie e ative o [ambiente virtual](https://docs.python.org/pt-br/3/library/venv.html)**
 
+
 Linux/Wsl
 ```bash
 python3 -m venv .venv
