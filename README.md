@@ -1,6 +1,5 @@
-# Trabalho de desenvolvimento web QUALQUER COISA DENOVO
+# Trabalho de desenvolvimento web 
 
-OLA MUNDOeervrevrevrttrvrt
 
 ## Como Usar
 
