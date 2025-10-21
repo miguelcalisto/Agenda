@@ -1,6 +1,5 @@
 # Trabalho de desenvolvimento web 
 
-
 ## Como Usar
 
 1. **Crie e ative o [ambiente virtual](https://docs.python.org/pt-br/3/library/venv.html)**
